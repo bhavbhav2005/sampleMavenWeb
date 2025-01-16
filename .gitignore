@@ -1,17 +1,187 @@
-target/
-pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
-pom.xml.next
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
-# https://github.com/takari/maven-wrapper#usage-without-binary-jar
-.mvn/wrapper/maven-wrapper.jar
-
-# Eclipse m2e generated files
-# Eclipse Core
-.project
-# JDT-specific (Eclipse Java Development Tools)
-.classpath
+1. Git Version:
+The git --version command is used to check if Git is installed on your system. This
+command displays the current version of Git that is available.
+For example, running: git --version
+might return git version 2.37.1, confirming that Git is installed. 
+2. Git Config:
+The git config command is used to set up the user identity for commits, including
+name and email address. This ensures that every commit you make in the project history is
+associated with your correct identity.
+Usage Example:
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com" 
+3. Git Init:
+The git init command is used to create a new Git repository. This initializes a directory
+as a new Git repository and creates a .git subdirectory to store all Git-related files.
+Usage Example: git init
+Explanation: This command creates an empty Git project within the directory. After running git
+init, the project is now under version control, and you can start tracking changes. 
+4. Git Status:
+The git status command displays the state of your working directory and staging area.
+It shows what changes have been staged, what files are not being tracked by Git, and what
+changes are yet to be committed.
+Usage Example: git status
+5. Git Add:
+The git add command is used to add changes to the staging area. You must stage
+changes before committing them to ensure only the desired changes are included in the
+commit.
+Usage Example: git add .
+Explanation:
+ . stages all changes in the current directory.
+ Specific files can be added by replacing . with the file names.
+6. Git Commit:
+The git commit command saves your changes to the local repository. Each commit
+represents a snapshot of the repository at a particular point in time. You must include a
+message explaining what the commit does.
+Usage Example: git commit -m "Added new feature"
+Explanation:
+ -m: Allows you to add a commit message directly from the command line.
+ The commit message should be concise but descriptive enough to explain the change
+7. Git Diff:
+The git diff command shows the differences between files in your working directory
+and the staging area. It is useful to review changes before committing them.
+Usage Example:
+git diff 
+8. Git Help:
+The git help command provides documentation and detailed usage information for any
+Git command.
+Usage Example: git help <command>
+Explanation: You can use git help to get detailed information about any Git command, such
+as git help add to learn more about the git add command
+Branches in Git
+A branch in Git is like a separate copy of your project where you can make changes without
+affecting the main version
+ git branch <branch_name>: Creates a new branch, such as git branch
+search-feature.
+ git branch -a: Shows a list of all branches, including the main branch, feature
+branches, and remote branches. 
+The git checkout command is used to switch between branches. This allows you to move from
+one task to another easily
+ git checkout <branch_name>: Switches to an existing branch, like git
+checkout bugfix to fix the bug.
+ git checkout -b <new_branch>: Creates a new branch and switches to it
+immediately. For example, git checkout -b update-design will create and
+move to a new branch where you can work on a design update. 
+After working on a separate branch for a while (e.g., developing a new feature or fixing a bug),
+you will want to combine your work with the main project. This is where git merge comes in—
+it merges the changes from one branch into another, typically merging changes into the master
+branch. 
+git merge <branch_name>: Merges the changes from the specified branch into the
+current branch. For example, git merge search-feature combines the search
+feature with the master branch. 
+Git keeps a detailed history of all changes (called commits) made to the project. The git log
+command shows you this history, so you can see who made changes, when they made them, and
+what the changes were. This is useful for tracking the progress of the project and identifying when
+bugs were introduced. 
+git log: Shows the complete history of commits in a branch.
+ git log --oneline: Shows a simpler view with one line per commit, like f3b9c2b
+Added search feature. 
+If a mistake was made in a previous commit, Git provides a way to undo those changes using the
+git revert command
+git revert <commit_hash>: Reverts (undoes) the changes from a specific commit.
+For example, git revert f3b9c2b will undo the changes made in the commit with
+the ID f3b9c2b.
+Flow of Using Git Commands (with Examples):
+1. Create a Branch:
+You create a branch to work on a new feature:
+git branch new-feature
+2. Switch to the Branch:
+You switch to the new branch to start working on the feature:
+git checkout new-feature
+3. Develop Your Feature and Commit Changes:
+You make changes, then commit them:
+git commit -m "Developed search functionality"
+4. Switch to Another Branch to Fix a Bug:
+Suddenly, you need to fix a bug, so you switch to the bug fix branch:
+git checkout bugfix
+5. Merge the Bug Fix Into the Main Branch:
+Once the bug is fixed, you merge it into the master branch:
+git checkout master
+git merge bugfix
+6. Check History Using Log:
+You want to review the commits to make sure everything is correct:
+git log
+7. Revert a Mistake:
+If you discover a mistake in a previous commit, you can revert it:
+git revert f3b9c2b
+1. Git Remote
+Git remote allows you to manage connections to remote repositories, which are Git repositories
+hosted on the internet (like GitHub or Bitbucket). A remote repository is where you can save or
+retrieve your project from a server, and you use this command to add, remove, or view the
+addresses (URLs) of these repositories.
+ To add a new remote repository, you use:
+git remote add origin https://github.com/user/repo.git
+git remote -v: Shows the current remotes and their URLs.
+o git remote add <name> <url>: Adds a new remote connection.
+o git remote remove <name>: Removes an existing remote. 
+2. Connecting Git to GitHub Using SSH Key
+SSH (Secure Shell) keys are a way to connect your computer to GitHub without needing to enter
+a password each time.
+It uses a key pair:
+ A private key that stays on your computer.
+ A public key that is shared with GitHub to verify your identity.
+ Steps for Generating SSH Key:
+1. Generate SSH Key: Use the command ssh-keygen -t rsa to generate the
+key on your system.
+2. Copy the Public Key: The public key is stored in a file (usually id_rsa.pub),
+and you copy this key.
+3. Add to GitHub: In GitHub, go to Settings > SSH and GPG keys > New SSH Key.
+Paste the copied key into the text box and click “Add SSH key.”
+This allows you to securely interact with GitHub without typing your password every time. 
+3. Git Clone
+The git clone command is used to download a copy of a project from a remote repository to your
+computer. It creates a local version of the project that you can start working on right away.
+ If you want to work on a project hosted on GitHub, you would use:
+git clone https://github.com/user/repo.git
+This creates a local copy of the project so you can begin editing the code on your computer.
+ Other Commands:
+o ls -ltr: Lists the files in the current directory, showing the latest modified files
+after the cloning is done
+4. Git Push
+After making changes locally, you use the git push command to send these changes from your
+local repository to the remote repository (for example, back to GitHub). This is how you share
+your work with others or keep your remote repository updated with your changes.
+ After editing files on your computer and committing the changes, you would push them to
+the remote repository using:
+git push origin master
+This pushes the changes from your local master branch to the origin remote (which is
+the GitHub repository)
+5. Git Pull
+The git pull command fetches changes from the remote repository and merges them into your local
+repository. This ensures that you have the latest version of the project, including updates made by
+your teammates or collaborators.
+ If you’re working on a project with others and want to get the latest updates they made on
+GitHub, you would use:
+git pull origin master
+This will download any new commits from the master branch of the remote repository
+(origin) and merge them with your local code
+6. Git Fork
+A fork is a personal copy of someone else’s repository, typically used in open-source projects.
+When you fork a repository, you get your own version of the project on GitHub that you can edit
+without affecting the original project. You can then propose changes to the original project by
+making a pull request.
+ To fork a repository, go to the original repository on GitHub and click the "Fork" button.
+This makes a copy of the repository under your GitHub account where you can make your
+own changesDetailed Flow with Examples
+1. Clone a Repository: If you want to contribute to an open-source project or collaborate
+with others, you first clone the repository to your computer:
+git clone https://github.com/user/repo.git
+2. Make Changes Locally: Once you have the project on your local machine, you can
+make changes to the files, such as fixing bugs or adding new features. After editing, you
+commit the changes:
+git commit -m "Added new feature"
+3. Push Changes to Remote: After committing your changes, you push them back to the
+remote repository (GitHub):
+git push origin master
+4. Pull Changes Made by Others: If someone else makes changes to the project while
+you’re working on it, you can pull those updates to ensure your version is up-to-date:
+git pull origin master
+5. Use SSH Keys for Security: Instead of typing your password every time you push or
+pull changes, you can set up an SSH key to make this process secure and automatic:
+ssh-keygen -t rsa # Generate SSH key
+6. Forking a Repository: If you want to make your own changes to someone else’s project
+(such as in open-source), you fork the repository first, creating your own copy:
+o Visit the original project on GitHub.
+o Click the Fork button.
+o Make your changes in your personal copy, and then propose your updates back to
+the original repository by creating a pull request. 
